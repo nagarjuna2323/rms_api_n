@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: rms-infra_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: idnsiwbe
+      MYSQL_DATABASE: rms_database
+      MYSQL_USER: nagarjuna
+      MYSQL_PASSWORD: mango
+      MYSQL_AUTH_PLUGIN: caching_sha2_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - backend
+
+volumes:
+  mysql_data:
+
+networks:
+  backend:
+    driver: bridge
+
+
